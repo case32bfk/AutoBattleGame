@@ -5,9 +5,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: clamp(4px, 1vw, 8px);
     overflow-y: auto;
     overflow-x: hidden;
+    min-height: 0;
 }
 
 /* 戰鬥標題列 */
@@ -28,16 +29,16 @@
 
 .battle-header h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: clamp(14px, 4.5vw, 18px);
 }
 
 /* 戰鬥場地 */
 .battle-field {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
-    padding: 10px;
-    gap: 8px;
+    margin: clamp(8px, 3vw, 15px) 0;
+    padding: clamp(6px, 2.5vw, 10px);
+    gap: clamp(4px, 2vw, 8px);
 }
 
 .player-side,
@@ -45,25 +46,30 @@
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    min-width: 0;
 }
 
 #player-monster,
 #enemy-monster {
     text-align: center;
+    width: 100%;
+    max-width: 192px;
 }
 
-/* 戰鬥圖片 - 96x96 放大2倍 192x192，硬邊放大 */
+/* 戰鬥圖片 - 使用 aspect-ratio 保持比例 */
 .battle-image {
     box-sizing: border-box;
-    width: 192px;
-    height: 192px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 192px;
     background-color: #0f3460;
     border: 2px solid #e94560;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 8px;
+    margin: 0 auto clamp(4px, 1.5vw, 8px);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -76,7 +82,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: 192px 192px;
+    background-size: cover;
+    background-position: center;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     z-index: 1;
@@ -102,18 +109,24 @@
     image-rendering: crisp-edges;
 }
 
+#player-monster .monster-sprite img {
+    transform: scaleX(-1);
+    transform-origin: center center;
+}
+
 /* 戰鬥狀態 - 顯示在圖片下方 */
 .battle-status {
     background-color: #0f3460;
-    padding: 10px;
+    padding: clamp(6px, 2vw, 10px);
     border-radius: 8px;
-    font-size: 12px;
-    width: 192px;
+    font-size: clamp(10px, 3vw, 12px);
+    width: 100%;
+    max-width: 192px;
     margin: 0 auto;
 }
 
 .battle-status .status-name {
-    font-size: 14px;
+    font-size: clamp(11px, 3.5vw, 14px);
     font-weight: bold;
     color: #fff;
     margin-bottom: 4px;
@@ -138,7 +151,7 @@
     display: flex;
     justify-content: space-around;
     color: #aaa;
-    font-size: 11px;
+    font-size: clamp(9px, 2.5vw, 11px);
 }
 
 .battle-status .stat-atk,
@@ -150,18 +163,19 @@
 /* 戰鬥日誌 */
 .battle-log {
     background-color: #0f3460;
-    padding: 12px;
+    padding: clamp(6px, 1.5vw, 12px);
     border-radius: 10px;
-    height: 100px;
+    height: clamp(50px, 12vh, 100px);
     overflow-y: auto;
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1.5vw, 12px);
     width: 100%;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .battle-log p {
     margin: 4px 0;
-    font-size: 12px;
+    font-size: clamp(10px, 3vw, 12px);
     border-bottom: 1px solid #1a1a2e;
     padding-bottom: 4px;
 }
@@ -175,8 +189,8 @@
 }
 
 .battle-actions button {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: clamp(8px, 2.5vw, 12px) clamp(12px, 5vw, 20px);
+    font-size: clamp(12px, 3.5vw, 14px);
     flex: 1;
     max-width: 100px;
 }
@@ -184,13 +198,14 @@
 /* 操作功能區 */
 .battle-controls {
     background-color: #0f3460;
-    padding: 12px;
+    padding: clamp(6px, 1.5vw, 12px);
     border-radius: 10px;
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1.5vw, 12px);
+    flex-shrink: 0;
 }
 
 .battle-controls .control-label {
-    font-size: 12px;
+    font-size: clamp(10px, 3vw, 12px);
     color: #888;
     margin-bottom: 8px;
     text-align: center;
@@ -200,12 +215,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    gap: clamp(8px, 4vw, 15px);
 }
 
 .battle-controls .control-btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: clamp(8px, 2.5vw, 10px) clamp(12px, 5vw, 20px);
+    font-size: clamp(12px, 3.5vw, 14px);
     background-color: #27ae60;
     border: none;
     border-radius: 6px;
@@ -225,7 +240,7 @@
 }
 
 .battle-controls .toggle-label {
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     color: #fff;
 }
 
@@ -233,8 +248,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 26px;
+    width: clamp(40px, 12vw, 50px);
+    height: clamp(22px, 6vw, 26px);
 }
 
 .switch input {
@@ -258,8 +273,8 @@
 .slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: clamp(16px, 5vw, 20px);
+    width: clamp(16px, 5vw, 20px);
     left: 3px;
     bottom: 3px;
     background-color: white;
@@ -272,5 +287,5 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(24px);
+    transform: translateX(clamp(18px, 5.5vw, 24px));
 }

@@ -15,22 +15,28 @@
 html, body {
     overflow: hidden;
     height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Microsoft JhengHei', Arial, sans-serif;
     background-color: #1a1a2e;
     color: #eee;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 /* 遊戲容器 */
 #game-container {
-    width: 430px;
-    height: 932px;
+    width: calc(100vh * 0.461);
+    height: 100vh;
+    max-height: 932px;
+    max-width: 430px;
     background-color: #16213e;
     border-radius: 10px;
     padding: 10px 10px 0 10px;
@@ -40,6 +46,19 @@ body {
     position: relative;
 }
 
+@media (max-height: 700px) {
+    #game-container {
+        padding: 6px 6px 0 6px;
+    }
+}
+
+@media (min-width: 768px) and (min-height: 1000px) {
+    #game-container {
+        max-width: 480px;
+        max-height: 932px;
+    }
+}
+
 /* 標題 */
 h1, h2 {
     text-align: center;
@@ -47,19 +66,19 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: clamp(24px, 7vw, 32px);
     margin-bottom: 30px;
 }
 
 h2 {
-    font-size: 22px;
+    font-size: clamp(16px, 5vw, 22px);
     margin-bottom: 20px;
 }
 
 /* 按鈕 */
 button {
-    padding: 18px 50px;
-    font-size: 20px;
+    padding: clamp(12px, 4vw, 18px) clamp(30px, 10vw, 50px);
+    font-size: clamp(14px, 4vw, 20px);
     background-color: #e94560;
     color: white;
     border: none;
@@ -68,6 +87,13 @@ button {
     transition: background-color 0.3s;
     width: 80%;
     max-width: 280px;
+}
+
+@media (max-width: 380px) {
+    button {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
 }
 
 button:hover {
@@ -79,7 +105,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: clamp(6px, 2vw, 10px) clamp(8px, 3vw, 15px);
     background-color: #0e2245;
     border-radius: 8px;
     flex-shrink: 0;
@@ -87,7 +113,7 @@ button:hover {
 
 .screen-header h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: clamp(14px, 4vw, 20px);
     color: #e74c3c;
 }
 
@@ -95,7 +121,7 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 16px;
+    font-size: clamp(12px, 3.5vw, 16px);
     font-weight: bold;
     color: #f1c40f;
 }
@@ -105,10 +131,11 @@ button:hover {
     display: flex;
     justify-content: space-around;
     background-color: #0f3460;
-    padding: 8px 5px;
+    padding: clamp(4px, 1vh, 8px) clamp(2px, 0.5vw, 5px);
     border-radius: 10px 10px 0 0;
     margin-top: auto;
     flex-shrink: 0;
+    flex: 0 0 auto;
 }
 
 .nav-btn {
@@ -120,7 +147,7 @@ button:hover {
     padding: 5px 10px;
     width: auto;
     min-width: auto;
-    font-size: 11px;
+    font-size: clamp(9px, 2.5vw, 11px);
     color: #888;
     transition: color 0.3s;
 }
@@ -135,12 +162,12 @@ button:hover {
 }
 
 .nav-icon {
-    font-size: 20px;
+    font-size: clamp(16px, 5vw, 20px);
     margin-bottom: 2px;
 }
 
 .nav-label {
-    font-size: 12px;
+    font-size: clamp(10px, 2.8vw, 12px);
 }
 
 /* 頁面容器 */
@@ -151,13 +178,22 @@ button:hover {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
+    min-height: 0;
 }
 
 #title-screen::-webkit-scrollbar,
 #training-screen::-webkit-scrollbar,
 #battle-screen::-webkit-scrollbar,
 #system-screen::-webkit-scrollbar {
-    display: none;
+    width: 3px;
+}
+
+#title-screen::-webkit-scrollbar-thumb,
+#training-screen::-webkit-scrollbar-thumb,
+#battle-screen::-webkit-scrollbar-thumb,
+#system-screen::-webkit-scrollbar-thumb {
+    background-color: #e94560;
+    border-radius: 3px;
 }
 
 /* 載入畫面 */
@@ -177,12 +213,12 @@ button:hover {
 
 .loading-content {
     text-align: center;
-    padding: 40px;
+    padding: clamp(20px, 5vw, 40px);
 }
 
 .loading-spinner {
-    width: 60px;
-    height: 60px;
+    width: clamp(40px, 15vw, 60px);
+    height: clamp(40px, 15vw, 60px);
     border: 4px solid #0f3460;
     border-top: 4px solid #e94560;
     border-radius: 50%;
@@ -197,12 +233,12 @@ button:hover {
 
 #loading-status {
     color: #888;
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     margin-bottom: 20px;
 }
 
 .loading-progress {
-    width: 200px;
+    width: clamp(150px, 60vw, 200px);
     height: 8px;
     background-color: #0f3460;
     border-radius: 4px;
@@ -237,7 +273,7 @@ button:hover {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     border: 2px solid #ffd700;
     border-radius: 15px;
-    padding: 15px;
+    padding: clamp(10px, 4vw, 15px);
     text-align: center;
     color: #fff;
     max-width: 350px;
@@ -248,7 +284,7 @@ button:hover {
 }
 
 .levelup-title {
-    font-size: 28px;
+    font-size: clamp(22px, 7vw, 28px);
     font-weight: bold;
     margin-bottom: 15px;
     text-shadow: 0 0 10px #4ade80;
@@ -260,12 +296,12 @@ button:hover {
 }
 
 .levelup-pet-name {
-    font-size: 16px;
+    font-size: clamp(12px, 4vw, 16px);
     margin-bottom: 15px;
 }
 
 .levelup-lv-change {
-    font-size: 18px;
+    font-size: clamp(14px, 4.5vw, 18px);
     margin-bottom: 15px;
 }
 
@@ -280,33 +316,33 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 50px;
+    min-width: 40px;
 }
 
 .levelup-stat-label {
     font-weight: bold;
-    font-size: 12px;
+    font-size: clamp(10px, 2.5vw, 12px);
     margin-bottom: 3px;
 }
 
 .levelup-stat-old {
-    font-size: 11px;
+    font-size: clamp(9px, 2.5vw, 11px);
     color: #888;
 }
 
 .levelup-stat-inc {
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     color: #4ade80;
     font-weight: bold;
 }
 
 .levelup-stat-new {
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     font-weight: bold;
 }
 
 .levelup-hp-increase {
-    font-size: 16px;
+    font-size: clamp(12px, 4vw, 16px);
     font-weight: bold;
 }
 
@@ -332,7 +368,7 @@ button:hover {
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: clamp(10px, 3vw, 14px);
     color: #888;
 }
 
@@ -341,7 +377,7 @@ button:hover {
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: clamp(10px, 3vw, 14px);
     color: #4ade80;
 }
 
@@ -349,14 +385,14 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    font-size: 16px;
+    font-size: clamp(12px, 4vw, 16px);
     font-weight: bold;
 }
 
 .levelup-close-btn {
     margin-top: 20px;
-    padding: 10px 40px;
-    font-size: 16px;
+    padding: clamp(8px, 2.5vw, 10px) clamp(25px, 8vw, 40px);
+    font-size: clamp(14px, 4vw, 16px);
     background: #4ade80;
     color: #000;
     border: none;

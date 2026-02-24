@@ -5,9 +5,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: clamp(6px, 1.5vw, 10px);
     overflow-y: auto;
     overflow-x: hidden;
+    min-height: 0;
 }
 
 /* 系統標題列 */
@@ -29,7 +30,7 @@
 
 .system-header h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: clamp(14px, 4.5vw, 18px);
 }
 
 /* 系統內容 */
@@ -37,30 +38,30 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: clamp(8px, 3.5vw, 15px);
 }
 
 /* 系統區塊 */
 .system-section {
     background-color: #0f3460;
     border-radius: 10px;
-    padding: 12px;
+    padding: clamp(8px, 3vw, 12px);
 }
 
 .system-section h3 {
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     color: #e94560;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 2vw, 12px);
     border-bottom: 1px solid #1a1a2e;
-    padding-bottom: 6px;
+    padding-bottom: clamp(4px, 1.5vw, 6px);
 }
 
 /* 資訊列 */
 .info-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    font-size: 13px;
+    padding: clamp(4px, 1.5vw, 8px) 0;
+    font-size: clamp(11px, 3.5vw, 13px);
 }
 
 .info-row span:last-child {
@@ -71,9 +72,9 @@
 /* 系統按鈕 */
 .system-btn {
     width: 100%;
-    padding: 10px;
-    font-size: 13px;
-    margin-bottom: 8px;
+    padding: clamp(8px, 2.5vw, 10px);
+    font-size: clamp(12px, 3.5vw, 13px);
+    margin-bottom: clamp(4px, 2vw, 8px);
     background-color: #1a1a2e;
     color: #eee;
 }
