@@ -127,6 +127,7 @@
     <button id="btn-dev" style="display: none;">Dev</button>
     <script src="../datas/gameData.js"></script>
     <script src="../datas/game.js"></script>
+    <script src="components/GameNavigation.js"></script>
     <script>
         let currentMonsterImageName = null;
         
@@ -825,7 +826,10 @@
             }
         }, 10000);
         
-        initGameData().then(() => { updateMonsterDisplay(true); });
+        initGameData().then(() => { 
+            updateMonsterDisplay(true);
+            GameNavigation.init('Training');
+        });
     </script>
     <script>
         if ('serviceWorker' in navigator) {

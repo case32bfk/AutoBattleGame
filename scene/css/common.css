@@ -74,6 +74,32 @@ button:hover {
     background-color: #ff6b6b;
 }
 
+/* 通用頁面標題列 */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #0e2245;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.screen-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #e74c3c;
+}
+
+.gold-display {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1c40f;
+}
+
 /* 底部導航 */
 .footer-nav {
     display: flex;

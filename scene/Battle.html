@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-nav">
+        <div id="battle-footer" class="footer-nav">
             <button class="nav-btn" id="nav-training">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-label">培養</span>
@@ -103,9 +103,11 @@
             </button>
         </div>
     </div>
+    <button id="btn-dev" style="display: none;">Dev</button>
     <script src="../datas/gameData.js"></script>
     <script src="../datas/game.js"></script>
     <script src="../datas/battle-system.js"></script>
+    <script src="components/GameNavigation.js"></script>
     <script>
         async function initBattle() {
             await MapDataManager.loadMaps();
@@ -203,10 +205,6 @@
             window.currentEnemy = enemyMonster;
         }
 
-        document.getElementById('btn-retreat').addEventListener('click', function() {
-            window.location.href = 'Training.html';
-        });
-
         document.getElementById('btn-advance').addEventListener('click', function() {
             BattleSystem.onPlayerAdvance();
         });
@@ -247,6 +245,7 @@
 
         initGameData().then(() => { 
             initBattle();
+            GameNavigation.init('Battle');
         });
     </script>
     <script>
