@@ -655,6 +655,7 @@ function addUnchiElement(monsterImage) {
     unchiEl.className = 'unchi-item';
     
     const randomLeft = 10 + Math.random() * 80;
+    const _BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
     
     unchiEl.style.cssText = `
         position: absolute;
@@ -663,7 +664,7 @@ function addUnchiElement(monsterImage) {
         transform: translateX(-50%);
         width: 64px;
         height: 64px;
-        background-image: url('./datas/images/ui/unchi.png');
+        background-image: url('${_BASE_PATH}datas/images/ui/unchi.png');
         background-size: contain;
         background-repeat: no-repeat;
         image-rendering: pixelated;
