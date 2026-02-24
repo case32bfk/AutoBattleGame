@@ -688,11 +688,11 @@ const MapDataManager = (function() {
     let maps = [];
     let currentMap = null;
 
-    const _BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
+    const __BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
     
     async function loadMaps() {
         try {
-            const response = await fetch(`${_BASE_PATH}datas/map/index.json`);
+            const response = await fetch(`${__BASE_PATH}datas/map/index.json`);
             maps = await response.json();
             return maps;
         } catch (error) {
