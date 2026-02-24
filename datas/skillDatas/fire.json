@@ -1,0 +1,33 @@
+{
+    "name": "火焰",
+    "icon": "element_icon1",
+    "skills": [
+        {
+            "id": "fire_1",
+            "name" : "火種",
+            "formula": "target/self.str*1.2",
+            "element": 0,
+            "description": "噴出火焰攻擊敵人，造成120%攻擊力的火屬性傷害",
+            "brief_description": "火屬性攻擊",
+            "use" : 5
+        },
+        {
+            "id": "fire_2",
+            "name" : "噴射火焰",
+            "formula": "target/self.str*1.5",
+            "element": 0,
+            "description": "噴出強烈火焰攻擊敵人，造成150%攻擊力的火屬性傷害，並造成灼燒效果",
+            "brief_description": "強火屬性攻擊+灼燒",
+            "use" : 4
+        },
+        {
+            "id": "fire_3",
+            "name" : "烈火焚身",
+            "formula": "target/self.str*2.0-self.hp*0.1",
+            "element": 0,
+            "description": "犧牲自身HP使出毀滅性火焰攻擊，造成200%攻擊力的火屬性傷害",
+            "brief_description": "犧牲火屬性大攻擊",
+            "use" : 2
+        }
+    ]
+}

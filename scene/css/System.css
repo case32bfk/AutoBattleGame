@@ -1,0 +1,83 @@
+/* ===== 系統頁面 ===== */
+
+/* 頁面容器 */
+#system-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 系統標題列 */
+.system-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 0 5px;
+    min-height: 40px;
+}
+
+.system-header button {
+    padding: 8px 12px;
+    font-size: 13px;
+    width: auto;
+    min-width: auto;
+}
+
+.system-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* 系統內容 */
+.system-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 系統區塊 */
+.system-section {
+    background-color: #0f3460;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.system-section h3 {
+    font-size: 14px;
+    color: #e94560;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 6px;
+}
+
+/* 資訊列 */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+.info-row span:last-child {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+/* 系統按鈕 */
+.system-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    background-color: #1a1a2e;
+    color: #eee;
+}
+
+.system-btn:last-child {
+    margin-bottom: 0;
+}

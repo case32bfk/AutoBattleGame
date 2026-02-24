@@ -1,0 +1,37 @@
+[
+    {
+        "map_id": "forest_001",
+        "name": "森林外圍",
+        "level": [1, 5],
+        "monster": ["slime", "rabbit", "bee"],
+        "item": [["food", "apple"], ["food", "herb"]]
+    },
+    {
+        "map_id": "forest_002",
+        "name": "森林深處",
+        "level": [5, 10],
+        "monster": ["wolf", "bear", "spider"],
+        "item": [["food", "meat"], ["food", "herb"]]
+    },
+    {
+        "map_id": "desert_001",
+        "name": "沙漠綠洲",
+        "level": [3, 8],
+        "monster": ["scorpion", "snake", "cactus"],
+        "item": [["food", "cactus"], ["food", "water"]]
+    },
+    {
+        "map_id": "cave_001",
+        "name": "洞穴入口",
+        "level": [8, 15],
+        "monster": ["bat", "spider", "rat"],
+        "item": [["food", "mushroom"], ["food", "herb"]]
+    },
+    {
+        "map_id": "mountain_001",
+        "name": "山腳",
+        "level": [10, 20],
+        "monster": ["goat", "eagle", "wolf"],
+        "item": [["food", "meat"], ["food", "herb"]]
+    }
+]

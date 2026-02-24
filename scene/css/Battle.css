@@ -1,0 +1,276 @@
+/* ===== 戰鬥頁面 ===== */
+
+/* 頁面容器 */
+#battle-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 戰鬥標題列 */
+.battle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.battle-header button {
+    padding: 8px 15px;
+    font-size: 13px;
+    width: auto;
+    min-width: auto;
+}
+
+.battle-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* 戰鬥場地 */
+.battle-field {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 10px;
+    gap: 8px;
+}
+
+.player-side,
+.enemy-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#player-monster,
+#enemy-monster {
+    text-align: center;
+}
+
+/* 戰鬥圖片 - 96x96 放大2倍 192x192，硬邊放大 */
+.battle-image {
+    box-sizing: border-box;
+    width: 192px;
+    height: 192px;
+    background-color: #0f3460;
+    border: 2px solid #e94560;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 8px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.battle-image .room-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 192px 192px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    z-index: 1;
+}
+
+.battle-image .monster-sprite {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.battle-image .monster-sprite img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* 戰鬥狀態 - 顯示在圖片下方 */
+.battle-status {
+    background-color: #0f3460;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    width: 192px;
+    margin: 0 auto;
+}
+
+.battle-status .status-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.battle-status .status-lv {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.battle-status .status-hp {
+    color: #2ecc71;
+    margin-bottom: 4px;
+}
+
+.battle-status .hp-label {
+    color: #888;
+}
+
+.battle-status .status-stats {
+    display: flex;
+    justify-content: space-around;
+    color: #aaa;
+    font-size: 11px;
+}
+
+.battle-status .stat-atk,
+.battle-status .stat-def,
+.battle-status .stat-speed {
+    color: #f39c12;
+}
+
+/* 戰鬥日誌 */
+.battle-log {
+    background-color: #0f3460;
+    padding: 12px;
+    border-radius: 10px;
+    height: 100px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.battle-log p {
+    margin: 4px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 4px;
+}
+
+/* 戰鬥按鈕 */
+.battle-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.battle-actions button {
+    padding: 12px 20px;
+    font-size: 14px;
+    flex: 1;
+    max-width: 100px;
+}
+
+/* 操作功能區 */
+.battle-controls {
+    background-color: #0f3460;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.battle-controls .control-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.battle-controls .control-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.battle-controls .control-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    flex: 1;
+}
+
+.battle-controls .control-btn:active {
+    transform: scale(0.95);
+}
+
+.battle-controls .auto-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.battle-controls .toggle-label {
+    font-size: 14px;
+    color: #fff;
+}
+
+/* 開關樣式 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #27ae60;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}

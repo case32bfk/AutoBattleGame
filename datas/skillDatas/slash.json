@@ -1,0 +1,33 @@
+{
+    "name": "斬擊",
+    "icon": "element_icon2",
+    "skills": [
+        {
+            "id": "slash_1",
+            "name" : "爪擊",
+            "formula": "target/self.str*1.1",
+            "element": 10,
+            "description": "用利爪斬擊敵人，造成110%攻�力的普通傷害",
+            "brief_description": "普通斬擊",
+            "use" : 5
+        },
+        {
+            "id": "slash_2",
+            "name" : "鋼鐵連爪",
+            "formula": "target/self.str*1.3",
+            "element": 10,
+            "description": "快速的二連斬攻擊，造成130%攻擊力的普通傷害，20%機率暴擊",
+            "brief_description": "二連斬+暴擊",
+            "use" : 3
+        },
+        {
+            "id": "slash_3",
+            "name" : "跳躍咬殺",
+            "formula": "target/self.str*1.8",
+            "element": 10,
+            "description": "强力斩击攻击，造成180%攻击力的普通伤害，必定破防",
+            "brief_description": "强力斩击+破防",
+            "use" : 3
+        }
+    ]
+}

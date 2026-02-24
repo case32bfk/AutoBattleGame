@@ -1,0 +1,28 @@
+{
+    "name": "火焰",
+    "icon": "element_icons",
+    "icon_index": 0,
+    "skills": [
+        {
+            "id": "fire_1",
+            "formula": "damage:base_atk*1.2",
+            "element": "fire",
+            "description": "噴出火焰攻擊敵人，造成120%攻擊力的火屬性傷害",
+            "brief_description": "火屬性攻擊"
+        },
+        {
+            "id": "fire_2",
+            "formula": "damage:base_atk*1.5;burn:turn=2,damage=base_atk*0.1",
+            "element": "fire",
+            "description": "噴出強烈火焰攻擊敵人，造成150%攻擊力的火屬性傷害，並造成灼燒效果",
+            "brief_description": "強火屬性攻擊+灼燒"
+        },
+        {
+            "id": "fire_3",
+            "formula": "damage:base_atk*2.0;self_hp:-10%",
+            "element": "fire",
+            "description": "犧牲自身HP使出毀滅性火焰攻擊，造成200%攻擊力的火屬性傷害",
+            "brief_description": "犧牲火屬性大攻擊"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+[
+    {
+        "id": "apple",
+        "name": "蘋果",
+        "image_folder": "apple",
+        "animation_frames": 5,
+        "food_effect": "stm/+/10-20;exp/+/3-10"
+    }
+]

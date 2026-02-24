@@ -1,0 +1,23 @@
+[
+    {
+        "roomId": "forest",
+        "image": "room_forest",
+        "name" : "森林",
+        "description" : "適合飼養所有生物的環境",
+        "formula": ""
+    },
+    {
+        "roomId": "desert",
+        "image": "room_desert",
+        "name" : "沙漠",
+        "description" : "飼養在這裡的生物會逐漸提高風屬性的力量",
+        "formula": ""
+    },
+    {
+        "roomId": "room_003",
+        "image": "room_rocks",
+        "name" : "荒地",
+        "description" : "飼養在這裡的生物會逐漸提高ATK",
+        "formula": ""
+    }
+]

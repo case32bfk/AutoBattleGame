@@ -1,0 +1,51 @@
+{
+    "name": "斬擊",
+    "icon": "element_icon2",
+    "skills": [
+        {
+            "id": "baseAttack_1",
+            "name" : "衝撞",
+            "formula": "damage:base_atk*1.1",
+            "element": 10,
+            "description": "撞擊敵人造成100%傷害",
+            "brief_description": "普通斬擊",
+            "use" : 5
+        },
+        {
+            "id": "baseAttack_2",
+            "name" : "百萬噸拳擊",
+            "formula": "damage:base_atk*1.3;crit_rate:+20%",
+            "element": 10,
+            "description": "用全身力量攻擊敵人",
+            "brief_description": "二連斬+暴擊",
+            "use" : 3
+        },
+        {
+            "id": "baseAttack_3",
+            "name" : "數據破滅",
+            "formula": "damage:base_atk*1.8;def_break:100%",
+            "element": 10,
+            "description": "禁忌的機械族招式，能夠帶給其他機械族毀滅性的傷害",
+            "brief_description": "强力斩击+破防",
+            "use" : 3
+        },
+        {
+            "id": "baseAttack_4",
+            "name" : "爆破螺旋鑽",
+            "formula": "damage:base_atk*1.8;def_break:100%",
+            "element": 10,
+            "description": "使用螺旋力量貫穿敵人",
+            "brief_description": "强力斩击+破防",
+            "use" : 3
+        },
+        {
+            "id": "baseAttack_5",
+            "name" : "死亡之握",
+            "formula": "damage:base_atk*1.8;def_break:100%",
+            "element": 10,
+            "description": "用充滿絕望氣息的魂之掌碾碎敵人的戰鬥意志",
+            "brief_description": "强力斩击+破防",
+            "use" : 3
+        }
+    ]
+}

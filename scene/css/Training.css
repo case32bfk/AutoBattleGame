@@ -1,0 +1,640 @@
+/* ===== 培養頁面 ===== */
+
+/* 頁面容器 */
+#training-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #0a1a3a;
+}
+
+/* 頂部標題列 */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 6px;
+    background-color: #0e2245;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.screen-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #e74c3c;
+}
+
+/* 金幣顯示 */
+.gold-display {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1c40f;
+    position: relative;
+}
+
+/* 寵物資訊區 */
+.monster-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+}
+
+/* 等級與名稱列 */
+.monster-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.level-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* 等級、經驗、生命同一行 */
+.status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    padding-top: 4px;
+}
+
+.status-row .affection-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    border-radius: 6px;
+    padding: 2px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    min-width: 60px;
+    box-sizing: border-box;
+    height: 28px;
+    gap: 4px;
+}
+
+.status-row .affection-label {
+    font-size: 16px;
+    color: #e91e63;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.status-row .level-label {
+    font-size: 16px;
+    color: #e74c3c;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.status-row .exp-container,
+.status-row .hp-container,
+.status-row .stm-container,
+.status-row .clean-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #000;
+    border-radius: 6px;
+    padding: 2px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 100%;
+    box-sizing: border-box;
+    height: 28px;
+}
+
+.status-row .exp-label,
+.status-row .hp-label,
+.status-row .stm-label,
+.status-row .clean-label {
+    font-size: 13px;
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.status-row .exp-gauge-container,
+.status-row .hp-gauge-container,
+.status-row .stm-gauge-container,
+.status-row .clean-gauge-container {
+    flex: 1;
+    height: 16px;
+    background-color: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+}
+
+.status-row .exp-bar,
+.status-row .hp-bar,
+.status-row .stm-bar,
+.status-row .clean-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+.status-row .exp-bar {
+    background: linear-gradient(90deg, #9b59b6, #8e44ad);
+    box-shadow: 0 0 8px #8e44ad;
+}
+
+.status-row .hp-bar {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    box-shadow: 0 0 8px #2ecc71;
+}
+
+.status-row .stm-bar {
+    background: linear-gradient(90deg, #f39c12, #f1c40f);
+    box-shadow: 0 0 8px #f1c40f;
+}
+
+.status-row .clean-bar {
+    background: linear-gradient(90deg, #3498db, #5dade2);
+    box-shadow: 0 0 8px #5dade2;
+}
+
+.status-row .exp-text,
+.status-row .hp-text,
+.status-row .stm-text,
+.status-row .clean-text {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 1;
+}
+
+.status-sub-row {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.status-sub-row .stm-container,
+.status-sub-row .clean-container {
+    flex: 1;
+}
+
+.status-row .exp-text,
+.status-row .hp-text {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 1;
+}
+
+/* 名稱編輯容器 */
+.name-edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    justify-content: center;
+    padding: 2px 0;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    width: auto;
+    min-width: auto;
+}
+
+/* 寵物圖片 - 96x96 放大4倍 384x384，硬邊放大 */
+.monster-image {
+    box-sizing: border-box;
+    width: 384px;
+    height: 384px;
+    overflow: hidden;
+    position: relative; /* 核心：作為絕對定位的基準點 */
+    background-color: #000;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+    
+    /* ❌ 刪除所有的 display: flex, justify-content, align-items */
+    display: block;
+
+}
+
+.monster-image .room-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 384px 384px;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+
+.monster-image .monster-sprite {
+    position: relative;
+    z-index: 2;
+    transform: scaleX(-1);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.monster-image .monster-sprite img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.monster-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    border-radius: 7px;
+}
+
+.element-ribbon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    z-index: 10;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.element-ribbon-top-left {
+    top: 0px;
+    left: 0px;
+}
+
+.element-ribbon-bottom-right {
+    bottom: 0px;
+    right: 0px;
+}
+
+.element-ribbon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* 屬性列 */
+.stats-row {
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #0e2245;
+    border-radius: 8px;
+    padding: 8px 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: #888;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* 技能區域 */
+.skills-section {
+    background-color: #0e2245;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+}
+
+.skills-title {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.options-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 3px 8px;
+}
+
+.skills-list {
+    display: none;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 6px 0;
+}
+
+.skill-item.empty {
+    color: #555;
+    font-style: italic;
+}
+
+.skill-name {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.skill-desc {
+    color: #888;
+}
+
+
+
+/* 功能按鈕區 - 1x4 網格 */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 6px;
+    background-color: #0e2245;
+    border-radius: 8px;
+}
+
+.action-buttons button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 4px;
+    font-size: 18px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: #eee;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    max-width: none;
+}
+
+.action-buttons button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.action-buttons button:active {
+    transform: scale(0.95);
+}
+
+.action-buttons button .btn-icon {
+    font-size: 18px;
+}
+
+.action-buttons button .btn-text {
+    font-size: 18px;
+}
+
+.action-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.action-buttons button:disabled:hover {
+    background-color: transparent;
+}
+
+/* 技能列表 Modal */
+#skills-modal-overlay .skills-modal-content,
+#room-modal-overlay .skills-modal-content {
+    background: #0e2245;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 350px;
+    min-width: 280px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#skills-modal-overlay .skills-modal-title,
+#room-modal-overlay .skills-modal-title {
+    margin: 0 0 15px 0;
+    color: #e74c3c;
+    text-align: center;
+}
+
+#skills-modal-overlay .skill-item {
+    background: #0a1a3a;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#skills-modal-overlay .skill-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#skills-modal-overlay .skill-desc-row {
+    color: #888;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+#skills-modal-overlay .skill-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background: #333;
+    border-radius: 2px;
+}
+
+#skills-modal-overlay .skill-icon img,
+#skills-modal-overlay .skill-icon[src] {
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+#skills-modal-overlay .skill-name {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#skills-modal-overlay .skill-item.empty {
+    opacity: 0.3;
+}
+
+#skills-modal-overlay .skill-name-empty {
+    color: #555;
+}
+
+#skills-modal-overlay .skill-desc {
+    color: #888;
+    font-size: 12px;
+    padding-left: 24px;
+}
+
+#skills-modal-overlay .skills-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#skills-modal-overlay .page-btn,
+#room-modal-overlay .page-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+#skills-modal-overlay .page-btn:disabled,
+#room-modal-overlay .page-btn:disabled {
+    color: #555;
+    cursor: default;
+}
+
+#skills-modal-overlay .page-info {
+    color: #888;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+#skills-modal-overlay .close-btn,
+#room-modal-overlay .close-btn {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 15px auto 0;
+    padding: 10px;
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 房間設置 Modal */
+#room-modal-overlay .room-display {
+    background: #0a1a3a;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#room-modal-overlay .room-title {
+    color: #e74c3c;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#room-modal-overlay .room-name {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#room-modal-overlay .room-image {
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#room-modal-overlay .room-img {
+    width: 288px;
+    height: 288px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#room-modal-overlay .room-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#room-modal-overlay .room-set-btn {
+    padding: 8px 20px;
+    background: #27ae60;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 80px;
+}
+
+#room-modal-overlay .room-set-btn:disabled {
+    background: #555;
+    cursor: default;
+}

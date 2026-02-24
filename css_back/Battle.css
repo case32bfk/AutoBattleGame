@@ -1,0 +1,99 @@
+.battle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.battle-header button {
+    padding: 8px 15px;
+    font-size: 13px;
+    width: auto;
+    min-width: auto;
+}
+
+.battle-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #e94560;
+}
+
+.battle-field {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 10px;
+}
+
+.player-side, .enemy-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#player-monster, #enemy-monster {
+    text-align: center;
+}
+
+#player-image, #enemy-image {
+    width: 100px;
+    height: 100px;
+    background-color: #0f3460;
+    border: 2px solid #e94560;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+}
+
+#player-stats, #enemy-stats {
+    background-color: #0f3460;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+#player-stats p, #enemy-stats p {
+    margin: 6px 0;
+}
+
+.battle-log {
+    background-color: #0f3460;
+    padding: 12px;
+    border-radius: 10px;
+    height: 100px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.battle-log p {
+    margin: 4px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 4px;
+}
+
+.battle-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.battle-actions button {
+    padding: 12px 20px;
+    font-size: 14px;
+    flex: 1;
+    max-width: 100px;
+    background-color: #e94560;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.battle-actions button:hover {
+    background-color: #ff6b6b;
+}

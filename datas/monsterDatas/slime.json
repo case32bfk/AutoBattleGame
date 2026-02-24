@@ -1,0 +1,50 @@
+[
+    {
+        "id": "slime_001",
+        "name": "史萊姆",
+        "element": "water",
+        "image_name": "slime",
+        "base_stats": {
+            "hp": 80,
+            "str": 10,
+            "def": 8,
+            "dex": 15,
+            "int": 5,
+            "cha": 5
+        },
+        "skill_id": "slash_1",
+        "next": ["slime_002", "slime_003"]
+    },
+    {
+        "id": "slime_002",
+        "name": "水靈史萊姆",
+        "element": "water",
+        "image_name": "water_slime",
+        "base_stats": {
+            "hp": 120,
+            "str": 18,
+            "def": 14,
+            "dex": 20,
+            "int": 8,
+            "cha": 8
+        },
+        "skill_id": "slash_2",
+        "next": []
+    },
+    {
+        "id": "slime_003",
+        "name": "大地史萊姆",
+        "element": "earth",
+        "image_name": "earth_slime",
+        "base_stats": {
+            "hp": 150,
+            "str": 22,
+            "def": 25,
+            "dex": 12,
+            "int": 6,
+            "cha": 6
+        },
+        "skill_id": "slash_3",
+        "next": []
+    }
+]

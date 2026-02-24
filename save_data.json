@@ -1,0 +1,43 @@
+{
+  "gold": 500,
+  "openRooms": [
+    "forest"
+  ],
+  "monster": {
+    "id": "slime_001",
+    "name": "很嘻嘻",
+    "element": [
+      0,
+      null
+    ],
+    "lv": 1,
+    "exp": 80,
+    "expToNextLevel": 100,
+    "hp": 70,
+    "maxhp": 70,
+    "str": 4,
+    "int": 2,
+    "def": 3,
+    "dex": 2,
+    "cha": 3,
+    "skill_id": [
+      "baseAttack_1",
+      "baseAttack_2",
+      "fire_1",
+      "fire_2",
+      "fire_3",
+      "slash_1",
+      "slash_2",
+      "baseAttack_3",
+      "baseAttack_4",
+      "baseAttack_5"
+    ],
+    "room": "forest"
+  },
+  "gameProgress": {
+    "totalBattles": 0,
+    "wins": 0,
+    "losses": 0
+  },
+  "createdAt": "2026-02-20T02:35:29.987Z"
+}
