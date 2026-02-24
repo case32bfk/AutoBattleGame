@@ -3,7 +3,7 @@ const SkillDataManager = {
     
     async loadSkillSystem(filename) {
         try {
-            const response = await fetch(`/datas/skillDatas/${filename}`);
+            const response = await fetch(`./datas/skillDatas/${filename}`);
             const data = await response.json();
             this.skillSystems[filename.replace('.json', '')] = data;
             return data;
@@ -15,7 +15,7 @@ const SkillDataManager = {
     
     async loadAllSkillSystems() {
         try {
-            const response = await fetch('/datas/skillDatas/index.json');
+            const response = await fetch('./datas/skillDatas/index.json');
             const files = await response.json();
             for (const file of files) {
                 await this.loadSkillSystem(file);
@@ -83,7 +83,7 @@ const ElementDataManager = {
     
     async loadElementData() {
         try {
-            const response = await fetch('/datas/element.json');
+            const response = await fetch('./datas/element.json');
             const data = await response.json();
             data.forEach(element => {
                 this.elements[element.element_id] = element;
@@ -109,7 +109,7 @@ const ElementDataManager = {
         if (icon.length <= 2) {
             return { type: 'emoji', content: icon };
         }
-        return { type: 'image', content: `/datas/images/icon/${icon}` };
+        return { type: 'image', content: `./datas/images/icon/${icon}` };
     }
 };
 
@@ -118,7 +118,7 @@ const RoomDataManager = {
     
     async loadRoomData() {
         try {
-            const response = await fetch('/datas/rooms/index.json');
+            const response = await fetch('./datas/rooms/index.json');
             const data = await response.json();
             data.forEach(room => {
                 this.rooms[room.roomId] = room;
@@ -183,17 +183,17 @@ const SpriteAnimator = {
         const animate = () => {
             if (anim.currentLoop >= anim.loopCount) {
                 clearInterval(anim.intervalId);
-                imageElement.src = `/datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame1Suffix}.png`;
+                imageElement.src = `./datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame1Suffix}.png`;
                 delete this.animations[id];
                 if (onComplete) onComplete();
                 return;
             }
             
             if (anim.isOdd) {
-                imageElement.src = `/datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame2Suffix}.png`;
+                imageElement.src = `./datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame2Suffix}.png`;
                 if (anim.frame2Callback) anim.frame2Callback();
             } else {
-                imageElement.src = `/datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame1Suffix}.png`;
+                imageElement.src = `./datas/images/monster/${anim.baseName}/${anim.baseName}${anim.frame1Suffix}.png`;
                 if (anim.frame1Callback) anim.frame1Callback();
                 anim.currentLoop++;
             }
@@ -201,7 +201,7 @@ const SpriteAnimator = {
             anim.isOdd = !anim.isOdd;
         };
         
-        imageElement.src = `/datas/images/monster/${baseName}/${baseName}${frame2Suffix}.png`;
+        imageElement.src = `./datas/images/monster/${baseName}/${baseName}${frame2Suffix}.png`;
         if (frame2Callback) frame2Callback();
         
         anim.intervalId = setInterval(animate, duration);
@@ -223,7 +223,7 @@ const FoodDataManager = {
     
     async loadFoodData() {
         try {
-            const response = await fetch('/datas/foodIndex.json');
+            const response = await fetch('./datas/foodIndex.json');
             const data = await response.json();
             data.forEach(food => {
                 this.foods[food.id] = food;
@@ -266,14 +266,14 @@ const FoodAnimator = {
             container.appendChild(foodEl);
         }
         
-        foodEl.innerHTML = `<img src="/datas/images/food/${imageFolder}/${imageFolder}_0.png" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;">`;
+        foodEl.innerHTML = `<img src="./datas/images/food/${imageFolder}/${imageFolder}_0.png" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;">`;
         this.foodElement = foodEl;
     },
     
     updateFrame(frameIndex) {
         if (!this.foodElement || !this.currentFolder) return;
         
-        this.foodElement.innerHTML = `<img src="/datas/images/food/${this.currentFolder}/${this.currentFolder}_${frameIndex}.png" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;">`;
+        this.foodElement.innerHTML = `<img src="./datas/images/food/${this.currentFolder}/${this.currentFolder}_${frameIndex}.png" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;">`;
     },
     
     stop() {
@@ -446,7 +446,7 @@ const MonsterDataManager = {
     
     async loadMonsterData(filename) {
         try {
-            const response = await fetch(`/datas/monsterDatas/${filename}`);
+            const response = await fetch(`./datas/monsterDatas/${filename}`);
             const data = await response.json();
             
             if (Array.isArray(data)) {
@@ -466,7 +466,7 @@ const MonsterDataManager = {
     
     async loadAllMonsterData() {
         try {
-            const response = await fetch('/datas/monsterDatas/index.json');
+            const response = await fetch('./datas/monsterDatas/index.json');
             const files = await response.json();
             for (const file of files) {
                 await this.loadMonsterData(file);

@@ -690,7 +690,7 @@ const MapDataManager = (function() {
 
     async function loadMaps() {
         try {
-            const response = await fetch('/datas/map/index.json');
+            const response = await fetch('./datas/map/index.json');
             maps = await response.json();
             return maps;
         } catch (error) {

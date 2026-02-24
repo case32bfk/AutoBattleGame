@@ -202,21 +202,21 @@
             const roomId = m.room || 'forest';
             const roomData = RoomDataManager.getRoomById(roomId);
             if (roomData && roomData.image) {
-                document.querySelector('.monster-image .room-background').style.backgroundImage = `url('/datas/images/rooms/${roomData.image}.png')`;
+                document.querySelector('.monster-image .room-background').style.backgroundImage = `url('../datas/images/rooms/${roomData.image}.png')`;
             }
             
             const monsterSprite = document.querySelector('.monster-image .monster-sprite');
             const monsterData = MonsterDataManager.getMonsterById(m.id);
             if (monsterData && monsterData.image_name) {
                 currentMonsterImageName = monsterData.image_name;
-                monsterSprite.innerHTML = `<img src="/datas/images/monster/${monsterData.image_name}/${monsterData.image_name}_1.png" alt="${m.name}">`;
+                monsterSprite.innerHTML = `<img src="../datas/images/monster/${monsterData.image_name}/${monsterData.image_name}_1.png" alt="${m.name}">`;
             } else if (m.image_emoji) {
                 currentMonsterImageName = null;
                 monsterSprite.innerHTML = '';
                 monsterSprite.textContent = m.image_emoji;
             } else if (m.image_name) {
                 currentMonsterImageName = m.image_name;
-                monsterSprite.innerHTML = `<img src="/datas/images/monster/${m.image_name}/${m.image_name}_1.png" alt="${m.name}">`;
+                monsterSprite.innerHTML = `<img src="../datas/images/monster/${m.image_name}/${m.image_name}_1.png" alt="${m.name}">`;
             } else {
                 currentMonsterImageName = null;
                 monsterSprite.innerHTML = '';
@@ -354,7 +354,7 @@
             
             function updateImages() {
                 if (monsterSprite) {
-                    monsterSprite.src = `/datas/images/monster/${monster_image_name}/${monster_image_name}_${monster_index}.png`;
+                    monsterSprite.src = `../datas/images/monster/${monster_image_name}/${monster_image_name}_${monster_index}.png`;
                 }
                 FoodAnimator.updateFrame(food_index);
             }
@@ -654,10 +654,10 @@
         }
 
         function getSkillIconUrl(skill) {
-            let iconFile = '/datas/images/ui/element_icons.png';
+            let iconFile = '../datas/images/ui/element_icons.png';
             
             if (skill.systemIcon) {
-                iconFile = `/datas/images/ui/${skill.systemIcon}.png`;
+                iconFile = `../datas/images/ui/${skill.systemIcon}.png`;
             }
             
             return { url: iconFile };
@@ -742,7 +742,7 @@
             function renderRoomPage(index) {
                 const room = rooms[index];
                 const isSet = room.roomId === currentRoom;
-                const roomImageUrl = `/datas/images/rooms/${room.image}.png`;
+                const roomImageUrl = `../datas/images/rooms/${room.image}.png`;
                 
                 let modalContent = '<div id="room-modal-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;justify-content:center;align-items:center;">';
                 modalContent += '<div class="skills-modal-content">';

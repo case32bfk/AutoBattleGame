@@ -663,7 +663,7 @@ function addUnchiElement(monsterImage) {
         transform: translateX(-50%);
         width: 64px;
         height: 64px;
-        background-image: url('/datas/images/ui/unchi.png');
+        background-image: url('./datas/images/ui/unchi.png');
         background-size: contain;
         background-repeat: no-repeat;
         image-rendering: pixelated;

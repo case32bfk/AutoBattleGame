@@ -148,18 +148,18 @@
             const roomData = RoomDataManager.getRoomById(roomId);
             const playerImageEl = document.querySelector('#player-image .room-background');
             if (roomData && roomData.image && playerImageEl) {
-                playerImageEl.style.backgroundImage = `url('/datas/images/rooms/${roomData.image}.png')`;
+                playerImageEl.style.backgroundImage = `url('../datas/images/rooms/${roomData.image}.png')`;
             }
             
             const playerSprite = document.querySelector('#player-image .monster-sprite');
             const playerMonsterData = MonsterDataManager.getMonsterById(m.id);
             if (playerMonsterData && playerMonsterData.image_name) {
-                playerSprite.innerHTML = `<img src="/datas/images/monster/${playerMonsterData.image_name}/${playerMonsterData.image_name}_1.png" alt="${m.name}">`;
+                playerSprite.innerHTML = `<img src="../datas/images/monster/${playerMonsterData.image_name}/${playerMonsterData.image_name}_1.png" alt="${m.name}">`;
             } else if (m.image_emoji) {
                 playerSprite.innerHTML = '';
                 playerSprite.textContent = m.image_emoji;
             } else if (m.image_name) {
-                playerSprite.innerHTML = `<img src="/datas/images/monster/${m.image_name}/${m.image_name}_1.png" alt="${m.name}">`;
+                playerSprite.innerHTML = `<img src="../datas/images/monster/${m.image_name}/${m.image_name}_1.png" alt="${m.name}">`;
             } else {
                 playerSprite.innerHTML = '';
                 playerSprite.textContent = '🐉';
@@ -184,18 +184,18 @@
             const enemyRoomData = RoomDataManager.getRoomById(roomId);
             const enemyImageEl = document.querySelector('#enemy-image .room-background');
             if (enemyRoomData && enemyRoomData.image && enemyImageEl) {
-                enemyImageEl.style.backgroundImage = `url('/datas/images/rooms/${enemyRoomData.image}.png')`;
+                enemyImageEl.style.backgroundImage = `url('../datas/images/rooms/${enemyRoomData.image}.png')`;
             }
             
             const enemySprite = document.querySelector('#enemy-image .monster-sprite');
             const enemyMonsterData = MonsterDataManager.getMonsterById(enemyMonster.id);
             if (enemyMonsterData && enemyMonsterData.image_name) {
-                enemySprite.innerHTML = `<img src="/datas/images/monster/${enemyMonsterData.image_name}/${enemyMonsterData.image_name}_1.png" alt="${enemyMonster.name}">`;
+                enemySprite.innerHTML = `<img src="../datas/images/monster/${enemyMonsterData.image_name}/${enemyMonsterData.image_name}_1.png" alt="${enemyMonster.name}">`;
             } else if (enemyMonster.image_emoji) {
                 enemySprite.innerHTML = '';
                 enemySprite.textContent = enemyMonster.image_emoji;
             } else if (enemyMonster.image_name) {
-                enemySprite.innerHTML = `<img src="/datas/images/monster/${enemyMonster.image_name}/${enemyMonster.image_name}_1.png" alt="${enemyMonster.name}">`;
+                enemySprite.innerHTML = `<img src="../datas/images/monster/${enemyMonster.image_name}/${enemyMonster.image_name}_1.png" alt="${enemyMonster.name}">`;
             } else {
                 enemySprite.innerHTML = '';
                 enemySprite.textContent = '👾';
