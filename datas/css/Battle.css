@@ -180,6 +180,14 @@
     padding-bottom: 4px;
 }
 
+.battle-log p.win {
+    color: #4ade80;
+}
+
+.battle-log p.lose {
+    color: #ff6b6b;
+}
+
 /* 戰鬥按鈕 */
 .battle-actions {
     display: flex;

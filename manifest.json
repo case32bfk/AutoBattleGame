@@ -2,7 +2,7 @@
   "name": "Auto Battle Game",
   "short_name": "AutoBattle",
   "description": "自動戰鬥遊戲",
-  "start_url": "./Start.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#e94560",

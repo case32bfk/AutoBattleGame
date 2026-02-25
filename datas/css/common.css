@@ -404,3 +404,57 @@ button:hover {
 .levelup-close-btn:hover {
     background: #22c55e;
 }
+
+/* Loading bar for SPA */
+.loading-bar-container {
+    width: clamp(150px, 60vw, 200px);
+    height: 8px;
+    background-color: #0f3460;
+    border-radius: 4px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loading-bar {
+    height: 100%;
+    background-color: #e94560;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Modal styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #0e2245;
+    padding: clamp(12px, 4vw, 20px);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 350px;
+    min-width: clamp(200px, 80vw, 280px);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h3 {
+    margin: 0 0 clamp(10px, 3vw, 15px) 0;
+    color: #e74c3c;
+    text-align: center;
+}
+
+.modal-content button {
+    display: block;
+    width: calc(100% - 40px);
+    margin: clamp(10px, 4vw, 15px) auto 0;
+}
