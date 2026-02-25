@@ -13,7 +13,35 @@
             "cha": 5
         },
         "skill_id": "slash_1",
-        "next": ["slime_002", "slime_003"]
+        "next": [
+            "slime_002",
+            "slime_003"
+        ]
+    },
+    {
+        "id": "slime",
+        "name": "史萊姆",
+        "element": [
+            1,
+            1
+        ],
+        "image_name": "slime",
+        "base_stats": {
+            "hp": 10,
+            "str": 1,
+            "def": 1,
+            "dex": 1,
+            "int": 1,
+            "cha": 1
+        },
+        "skill_id": [
+            "fire_1",
+            "fire_3"
+        ],
+        "next": [
+            "slime",
+            "slime"
+        ]
     },
     {
         "id": "slime_002",
