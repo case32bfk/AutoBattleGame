@@ -144,13 +144,218 @@ const TrainingPage = {
         document.getElementById('btn-bath').addEventListener('click', () => this.bathMonster());
         document.getElementById('btn-clean').addEventListener('click', () => this.toiletMonster());
         document.getElementById('btn-interact').addEventListener('click', () => this.interactMonster());
-        document.getElementById('btn-skills').addEventListener('click', () => this.showSkillsModal());
+        document.getElementById('btn-skills').addEventListener('click', () => this.showSubWindow('skills'));
         document.getElementById('btn-evolve').addEventListener('click', () => this.showEvolveModal());
-        document.getElementById('btn-room').addEventListener('click', () => this.showRoomModal());
+        document.getElementById('btn-room').addEventListener('click', () => this.showSubWindow('room'));
         
         document.getElementById('nav-hunt').addEventListener('click', () => Router.navigate('battle'));
         document.getElementById('nav-system').addEventListener('click', () => Router.navigate('system'));
         document.getElementById('nav-gacha').addEventListener('click', () => alert('轉蛋功能尚未開放'));
+    },
+
+    showSubWindow(type) {
+        const existing = document.getElementById('sub-window');
+        const existingOverlay = document.getElementById('sub-window-overlay');
+        if (existing) {
+            if (existing.dataset.type === type) {
+                existing.remove();
+                existingOverlay?.remove();
+                return;
+            }
+            existing.remove();
+        }
+        existingOverlay?.remove();
+
+        const data = getSaveData();
+        if (!data || !data.monster) { alert('沒有寵物資料'); return; }
+
+        let content = '';
+        let title = '';
+        let pageInfo = '';
+        let itemsPerPage = 6;
+        let currentPage = 1;
+        let totalPages = 1;
+        let allItems = [];
+
+        if (type === 'skills') {
+            title = '技能';
+            const skillIds = data.monster.skill_id || [];
+            skillIds.forEach(skillId => {
+                const skill = SkillDataManager.getSkillById(skillId);
+                if (skill) allItems.push(skill);
+            });
+
+            if (allItems.length > 0) {
+                totalPages = Math.ceil(allItems.length / itemsPerPage);
+            } else {
+                content += '<p class="empty-msg">尚未習得技能</p>';
+            }
+        } else if (type === 'room') {
+            title = '房間';
+            const rooms = RoomDataManager.getAllRooms();
+            const currentRoom = data.monster.room || 'forest';
+            
+            rooms.forEach(room => {
+                const isOpen = (data.openRooms || []).includes(room.roomId) || room.roomId === 'forest';
+                allItems.push({ ...room, isOpen, isCurrent: room.roomId === currentRoom });
+            });
+            
+            if (allItems.length > 0) {
+                totalPages = allItems.length;
+                itemsPerPage = 1;
+            } else {
+                content += '<p class="empty-msg">暫無房間</p>';
+            }
+        }
+
+        const html = `<div id="sub-window" data-type="${type}">
+            <div class="sub-window-content ${type === 'skills' ? 'skills' : ''}" data-page="1" data-total="${totalPages}">${content}</div>
+            <div class="sub-window-page-info"></div>
+            <div class="sub-window-footer">
+                <button class="sub-window-btn prev">◂</button>
+                <button class="sub-window-close">關閉</button>
+                <button class="sub-window-btn next">▸</button>
+            </div>
+        </div>`;
+
+        const overlayHtml = `<div id="sub-window-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:99;"></div>`;
+        document.getElementById('game-container').insertAdjacentHTML('beforeend', overlayHtml);
+        document.getElementById('game-container').insertAdjacentHTML('beforeend', html);
+
+        const subWindow = document.getElementById('sub-window');
+        const subWindowOverlay = document.getElementById('sub-window-overlay');
+        const pages = ['skills', 'room'];
+        let currentIndex = pages.indexOf(type);
+        let skillPage = 1;
+
+        function closeSubWindow() {
+            subWindow.remove();
+            subWindowOverlay.remove();
+        }
+
+        function getSkillIconHtml(icon) {
+            if (!icon) return '⚡';
+            if (icon.length <= 2) {
+                return icon;
+            }
+            return `<img src="${BASE_PATH}datas/images/ui/${icon}.png" style="width:16px;height:16px;vertical-align:middle;">`;
+        }
+
+        function renderSkillsPage(page) {
+            const contentEl = subWindow.querySelector('.sub-window-content');
+            const pageInfoEl = subWindow.querySelector('.sub-window-page-info');
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = allItems.slice(start, end);
+            
+            contentEl.innerHTML = pageItems.map(skill => `
+                <div class="sub-window-item">
+                    <div class="skill-header">
+                        <span class="skill-icon">${getSkillIconHtml(skill.systemIcon)}</span>
+                        <span class="skill-name">${skill.name}</span>
+                    </div>
+                    <div class="skill-desc">${skill.description || '無描述'}</div>
+                </div>
+            `).join('');
+            
+            pageInfoEl.textContent = `${page}/${totalPages}`;
+            contentEl.dataset.page = page;
+        }
+
+        let roomPage = 1;
+
+        function renderRoomsPage(page) {
+            const contentEl = subWindow.querySelector('.sub-window-content');
+            const pageInfoEl = subWindow.querySelector('.sub-window-page-info');
+            const room = allItems[page - 1];
+            
+            if (!room) return;
+            
+            const imageName = room.image || `room_${room.roomId}`;
+            const btnText = room.isCurrent ? '設定中' : (room.isOpen ? '設定' : '🔒');
+            const btnClass = room.isCurrent ? 'btn-setting current' : (room.isOpen ? 'btn-setting' : 'btn-locked');
+            const btnDisabled = !room.isOpen || room.isCurrent;
+            
+            contentEl.innerHTML = `
+                <div class="room-display">
+                    <img src="${BASE_PATH}datas/images/rooms/${imageName}.png" class="room-image">
+                    <div class="room-info">
+                        <div class="room-name">${room.name}</div>
+                        <button class="${btnClass}" data-room-id="${room.roomId}" ${btnDisabled ? 'disabled' : ''}>${btnText}</button>
+                    </div>
+                </div>
+            `;
+            
+            pageInfoEl.textContent = `${page}/${totalPages}`;
+            contentEl.dataset.page = page;
+            
+            if (!btnDisabled) {
+                contentEl.querySelector('.btn-setting').addEventListener('click', (e) => {
+                    const roomId = e.target.dataset.roomId;
+                    this.selectRoom(roomId);
+                    closeSubWindow();
+                });
+            }
+        }
+
+        if (type === 'skills' && allItems.length > 0) {
+            renderSkillsPage(1);
+        } else if (type === 'room' && allItems.length > 0) {
+            renderRoomsPage(1);
+        }
+
+        subWindow.querySelector('.sub-window-close').addEventListener('click', () => closeSubWindow());
+
+        subWindow.querySelector('.prev').addEventListener('click', () => {
+            if (type === 'skills' && totalPages > 1) {
+                skillPage = skillPage > 1 ? skillPage - 1 : totalPages;
+                renderSkillsPage(skillPage);
+            } else if (type === 'room' && totalPages > 1) {
+                roomPage = roomPage > 1 ? roomPage - 1 : totalPages;
+                renderRoomsPage(roomPage);
+            } else {
+                currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+                this.showSubWindow(pages[currentIndex]);
+            }
+        });
+
+        subWindow.querySelector('.next').addEventListener('click', () => {
+            if (type === 'skills' && totalPages > 1) {
+                skillPage = skillPage < totalPages ? skillPage + 1 : 1;
+                renderSkillsPage(skillPage);
+            } else if (type === 'room' && totalPages > 1) {
+                roomPage = roomPage < totalPages ? roomPage + 1 : 1;
+                renderRoomsPage(roomPage);
+            } else {
+                currentIndex = (currentIndex + 1) % pages.length;
+                this.showSubWindow(pages[currentIndex]);
+            }
+        });
+
+        document.addEventListener('keydown', function handleSubWindowKey(e) {
+            const sw = document.getElementById('sub-window');
+            if (!sw) {
+                document.removeEventListener('keydown', handleSubWindowKey);
+                return;
+            }
+            if (e.key === '◂' || e.key === 'ArrowLeft') {
+                sw.querySelector('.prev').click();
+            } else if (e.key === '▸' || e.key === 'ArrowRight') {
+                sw.querySelector('.next').click();
+            } else if (e.key === 'Escape') {
+                closeSubWindow();
+            }
+        });
+
+        if (type === 'room') {
+            subWindow.querySelectorAll('.btn-select').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const roomId = e.target.closest('.sub-window-item').dataset.roomId;
+                    this.selectRoom(roomId);
+                    closeSubWindow();
+                });
+            });
+        }
     },
 
     updateMonsterDisplay(isInitial = false) {

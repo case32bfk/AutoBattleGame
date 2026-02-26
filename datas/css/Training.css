@@ -447,3 +447,277 @@
     cursor: pointer;
     font-size: clamp(11px, 3vw, 13px);
 }
+
+/* Sub Window */
+#sub-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0e2245;
+    border-radius: 10px;
+    padding: 12px;
+    width: calc(100% - 40%);
+    max-width: 350px;
+    min-width: 200px;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* 房間 Sub Window */
+#sub-window[data-type="room"] {
+    min-width: 320px;
+    max-width: 400px;
+}
+
+.sub-window-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 15%;
+}
+
+.sub-window-btn {
+    background: transparent;
+    border: none;
+    color: #eee;
+    width: 15%;
+    aspect-ratio: 1;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-window-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.sub-window-close {
+    width: 70%;
+    padding: 8px 30px;
+    background: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.sub-window-close:hover {
+    background: #c0392b;
+}
+
+.sub-window-content {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+/* 技能列表样式 */
+.sub-window-content.skills .sub-window-item {
+    display: block;
+    padding: 10px;
+}
+
+.sub-window-content.skills .skill-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.sub-window-content.skills .skill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.sub-window-content.skills .skill-name {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sub-window-content.skills .skill-desc {
+    color: #aaa;
+    font-size: 11px;
+    line-height: 1.4;
+    padding-left: 0;
+}
+
+.sub-window-page-info {
+    text-align: center;
+    color: #888;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* 技能列表樣式 - 固定6項目高度 */
+#sub-window[data-type="skills"] .sub-window-content {
+    max-height: none;
+    overflow: visible;
+}
+
+#sub-window[data-type="skills"] .sub-window-content .sub-window-item {
+    margin-bottom: 4px;
+    padding: 6px 10px;
+    display: block;
+}
+
+#sub-window[data-type="skills"] .skill-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+#sub-window[data-type="skills"] .skill-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sub-window[data-type="skills"] .skill-name {
+    font-size: 14px;
+    width: 100%;
+}
+
+#sub-window[data-type="skills"] .skill-desc {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.sub-window-item {
+    background: #0a1a3a;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-window-item.current {
+    border-color: #4ade80;
+}
+
+.sub-window-item .item-name {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sub-window-item .item-desc {
+    color: #888;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.sub-window-item span:first-child {
+    flex: 1;
+}
+
+.btn-select {
+    padding: 6px 12px;
+    background: #27ae60;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.btn-select:hover {
+    background: #219653;
+}
+
+/* 房間列表樣式 */
+#sub-window[data-type="room"] .sub-window-content {
+    max-height: none;
+    overflow: visible;
+}
+
+.room-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.room-image {
+    width: 288px;
+    height: 288px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #0a1a3a;
+}
+
+.room-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.room-name {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn-setting {
+    padding: 8px 24px;
+    background: #27ae60;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    width: 80%;
+}
+
+.btn-setting:hover:not(:disabled) {
+    background: #219653;
+}
+
+.btn-setting.current {
+    background: #3498db;
+    cursor: default;
+}
+
+.btn-setting:disabled {
+    background: #666;
+    cursor: not-allowed;
+}
+
+.btn-locked {
+    padding: 8px 24px;
+    background: #666;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    width: 80%;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    padding: 20px;
+}
