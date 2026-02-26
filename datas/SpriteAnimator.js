@@ -1,4 +1,4 @@
-const __BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
+var __BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
 
 const SpriteAnimator = (function() {
     const imageCache = {};

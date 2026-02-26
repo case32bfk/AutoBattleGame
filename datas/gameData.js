@@ -1,4 +1,4 @@
-const __BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
+var __BASE_PATH = typeof BASE_PATH !== 'undefined' ? BASE_PATH : '';
 const SkillDataManager = {
     skillSystems: {},
     
@@ -461,11 +461,14 @@ const MonsterDataManager = {
         const monster = this.monsters[monsterId];
         if (!monster || !monster.base_stats) return null;
         
+        const baseHp = Math.floor(monster.base_stats.hp * (1 + (level - 1) * 0.1));
+        const baseDef = Math.floor((monster.base_stats.def || 8) * (1 + (level - 1) * 0.08));
+        
         const stats = {
-            hp: Math.floor(monster.base_stats.hp * (1 + (level - 1) * 0.1)),
-            maxhp: Math.floor(monster.base_stats.hp * (1 + (level - 1) * 0.1)),
+            hp: baseHp,
+            maxhp: baseHp + baseDef * 3,
             str: Math.floor((monster.base_stats.str || 10) * (1 + (level - 1) * 0.08)),
-            def: Math.floor((monster.base_stats.def || 8) * (1 + (level - 1) * 0.08)),
+            def: baseDef,
             dex: Math.floor((monster.base_stats.dex || 10) * (1 + (level - 1) * 0.05)),
             int: Math.floor((monster.base_stats.int || 5) * (1 + (level - 1) * 0.08)),
             cha: Math.floor((monster.base_stats.cha || 5) * (1 + (level - 1) * 0.08))
@@ -506,3 +509,9 @@ async function initGameData() {
     console.log('遊戲資料載入完成');
     console.log('Elements loaded:', ElementDataManager.elements);
 }
+
+window.SkillDataManager = SkillDataManager;
+window.MonsterDataManager = MonsterDataManager;
+window.ElementDataManager = ElementDataManager;
+window.RoomDataManager = RoomDataManager;
+window.FoodDataManager = FoodDataManager;

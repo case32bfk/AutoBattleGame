@@ -69,7 +69,7 @@ function createDefaultMonster() {
                 exp: 0,
                 expToNextLevel: calculateExpToNextLevel(1),
                 hp: slimeMonster.base_stats.hp,
-                maxhp: slimeMonster.base_stats.hp,
+                maxhp: slimeMonster.base_stats.hp + (slimeMonster.base_stats.def || 8) * 3,
                 str: slimeMonster.base_stats.str || 10,
                 def: slimeMonster.base_stats.def || 8,
                 dex: slimeMonster.base_stats.dex || 10,
@@ -99,7 +99,7 @@ function createDefaultMonster() {
         exp: 0,
         expToNextLevel: calculateExpToNextLevel(1),
         hp: 100,
-        maxhp: 100,
+        maxhp: 100 + 10 * 3,
         str: 15,
         def: 10,
         dex: 12,
@@ -267,34 +267,42 @@ function processLevelUpStats(monster, processAwaken) {
     if (processAwaken) {
         console.log('--- 潛力覺醒判定 ---');
         const awakenChance = Math.random() * 100;
-        console.log('覺醒隨機值:', awakenChance, '門檻: 200 (測試中)');
+        console.log('覺醒隨機值:', awakenChance, '門檻: 10 (測試中)');
         
-        if (awakenChance < 200) { //測試：200
-            awakened = true;
-            console.log('>>> 觸發潛力覺醒！ <<<');
-            
+        if (awakenChance < 10) {
             const awakenRate = 0.25 + Math.random() * 0.15;
             console.log('覺醒倍率:', awakenRate, '(範圍 0.25~0.4)');
             
             const beforePotential = monster.potential;
             const awakenPoints = Math.floor(monster.potential * awakenRate);
-            monster.potential -= awakenPoints;
             console.log(`覺醒分配前 potential: ${beforePotential}`);
             console.log(`覺醒點數: ${awakenPoints} = floor(${beforePotential} * ${awakenRate})`);
             
-            for (let i = 0; i < awakenPoints; i++) {
-                const randomStat = stats[Math.floor(Math.random() * stats.length)];
-                monster[randomStat] = (monster[randomStat] || 0) + 1;
-                increases[randomStat]++;
+            if (awakenPoints > 0) {
+                awakened = true;
+                console.log('>>> 觸發潛力覺醒！ <<<');
                 
-                if (randomStat === 'def') {
-                    monster.maxhp = (monster.maxhp || 0) + 3;
-                    console.log(`  覺醒分配 ${statNames[randomStat]}: +1 (體質影響 maxhp+3)`);
-                } else {
-                    console.log(`  覺醒分配 ${statNames[randomStat]}: +1`);
+                monster.potential -= awakenPoints;
+                
+                for (let i = 0; i < awakenPoints; i++) {
+                    const randomStat = stats[Math.floor(Math.random() * stats.length)];
+                    monster[randomStat] = (monster[randomStat] || 0) + 1;
+                    increases[randomStat]++;
+                    
+                    if (randomStat === 'def') {
+                        monster.maxhp = (monster.maxhp || 0) + 3;
+                        console.log(`  覺醒分配 ${statNames[randomStat]}: +1 (體質影響 maxhp+3)`);
+                    } else {
+                        console.log(`  覺醒分配 ${statNames[randomStat]}: +1`);
+                    }
                 }
+                console.log('覺醒後能力值增加:', increases);
+            } else {
+                console.log('覺醒點數為 0，不觸發潛力覺醒');
+                const potentialMultiplier = 1.1 + Math.random() * 0.2;
+                monster.potential = Math.floor(monster.potential * potentialMultiplier);
+                console.log(`potential 累積: ${beforePotential} -> ${monster.potential} (x${potentialMultiplier.toFixed(2)})`);
             }
-            console.log('覺醒後能力值增加:', increases);
         } else {
             console.log('未觸發潛力覺醒');
             const potentialMultiplier = 1.1 + Math.random() * 0.2;
@@ -520,7 +528,7 @@ function showLevelUpPopup(levelUpData, callback) {
             };
             
             const randomCheck = Math.random() * 100;
-            if (randomCheck < 200) { //測試：200
+            if (randomCheck < 10) { //測試：200
                 saveGame(data);
                 showAwakeningPopup(data.monster, oldStats, () => {
                     if (callback) callback();
